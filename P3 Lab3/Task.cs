@@ -44,7 +44,7 @@ namespace P3_Lab3
 
         public string Info
         {
-            get { return ToString(); }
+            get { return this.ToString(); }
         }
 
         private string ValidateTaskSummary(string value)
@@ -86,7 +86,8 @@ namespace P3_Lab3
 
         public override string ToString()
         {
-            return ($"Task: {TaskSummary} - Due Date: {DueDate} - {GetStringComplete()}");
+            if (this.IsOverDue)
+            return ($"Task: {TaskSummary} - Due Date: {DueDate} - {GetStringComplete()} ");
         }
     }
 }
