@@ -8,21 +8,21 @@ namespace P3_Lab3
 {
     internal class Task
     {
-        private string _taskSummary;
-        private string _taskDetails;
+        private string _summary;
+        private string _details;
         private DateTime _dueDate;
         private bool _isCompleted;
 
-        public string TaskSummary
+        public string Summary
         {
-            get { return this._taskSummary; }
-            set { this._taskSummary = ValidateTaskSummary(value);  }
+            get { return this._summary; }
+            set { this._summary = ValidateTaskSummary(value);  }
         }
 
-        public string TaskDetails
+        public string Details
         {
-            get { return this._taskDetails; }
-            set { this._taskDetails = ValidateTaskDetails(value); }
+            get { return this._details; }
+            set { this._details = ValidateTaskDetails(value); }
         }
         
         public DateTime DueDate
@@ -39,12 +39,18 @@ namespace P3_Lab3
 
         public bool IsOverDue
         {
-            get { return DateTime.Now > DueDate; }
+            get { return DateTime.Now > DueDate && !IsCompleted; }
         }
 
         public string Info
         {
-            get { return this.ToString(); }
+            get 
+            {
+                if (this.IsOverDue)
+                    return $"Task: {Summary} - Due Date: {DueDate} - {GetStringComplete()} - Overdue";
+                else
+                    return $"Task: {Summary} - Due Date: {DueDate} - {GetStringComplete()}"; 
+            }
         }
 
         private string ValidateTaskSummary(string value)
@@ -77,17 +83,19 @@ namespace P3_Lab3
             return IsCompleted ? "Completed" : "Not Completed";
         }
 
-        
-
-        public Task()
+        public Task(string summary)
         {
-           
+            Summary = summary; 
+        }
+
+        public Task(string summary, DateTime dueDate) : this(summary)
+        {
+            DueDate = dueDate;
         }
 
         public override string ToString()
         {
-            if (this.IsOverDue)
-            return ($"Task: {TaskSummary} - Due Date: {DueDate} - {GetStringComplete()} ");
+            return Info;
         }
     }
 }
