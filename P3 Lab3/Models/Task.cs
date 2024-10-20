@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace P3_Lab3.Models
+namespace P3_Lab3
 {
     public class Task
     {
@@ -12,7 +12,9 @@ namespace P3_Lab3.Models
         private string _summary;
         private string _details;
         private DateTime _dueDate;
+        private bool _isCompleted;
 
+        // No default constructor because for a task to exist, it needs to have a summary and that is something a user must fill in on their own, it's not our job.
 
         // Constructor that initializes Task summary with today's date as default due date
         public Task(string summary)
@@ -20,6 +22,7 @@ namespace P3_Lab3.Models
             Summary = summary;
             DueDate = DateTime.Today;
             Details = string.Empty;
+            IsCompleted = false;
         }
 
         // Constructor that initializes Task summary and due date
@@ -31,39 +34,40 @@ namespace P3_Lab3.Models
         // Properties
         public string Summary
         {
-            get { return _summary; }
+            get { return this._summary; }
             set
             {
                 if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Summary cannot be null or empty.");
-                }
+                    throw new ArgumentException("Summary cannot be null or empty.", nameof(value));
 
-                _summary = value;
+                this._summary = value;
             }
         }
 
         public string Details
         {
-            get { return _details; }
-            set { _details = value ?? string.Empty; }
+            get { return this._details; }
+            set { this._details = value ?? string.Empty; }
         }
 
         public DateTime DueDate
         {
-            get { return _dueDate; }
+            get { return this._dueDate; }
             set
             {
                 if (value < DateTime.Today.AddMonths(-1))
-                {
                     throw new ArgumentException("Due date cannot be older than one month.", nameof(value));
-                }
 
-                _dueDate = value;
+                this._dueDate = value;
             }
         }
 
-        public bool IsCompleted { get; set; }
+        // No validation required for this property because a boolean is either true or false, cannot be anything more than that.
+        public bool IsCompleted
+        {
+            get { return this._isCompleted; }
+            set { this._isCompleted = value; }
+        }
 
         // Calculated property to check if task is overdue and not completed
         public bool IsOverDue
