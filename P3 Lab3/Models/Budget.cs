@@ -38,11 +38,10 @@ namespace P3_Lab3.Models
             if (amount > DivisionBudget)
                 throw new ArgumentException("Amount cannot be more than the budget!", nameof(amount));
 
-            _divisionAllowances -= amount;
-            _companyBudget -= amount;
-
+            _divisionExpenses += amount;
             _companyExpenses += amount;
-            return _divisionExpenses += amount;
+            _companyBudget -= amount;
+            return _divisionAllowances -= amount;
         }
 
         public double DivisionBudget
@@ -73,7 +72,7 @@ namespace P3_Lab3.Models
 
         public override string ToString()
         {
-            return $"Division {Name}\nBudget:    {DivisionBudget,20:C}\nExpenses: {DivisionExpenses,20:C}";
+            return $"\n{Name} Division\nBudget:    {DivisionBudget,20:C}\nExpenses: {DivisionExpenses,20:C}";
         }
     }
 }
