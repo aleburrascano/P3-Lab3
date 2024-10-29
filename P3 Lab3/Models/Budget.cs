@@ -15,6 +15,9 @@ namespace P3_Lab3.Models
         private static double _companyBudget;
         private static double _companyExpenses;
 
+        private double _deniedDivisionAllowances;
+        private static double _companyDeniedAllowances;
+
         public Budget(string divisionName)
         {
             Name = divisionName;
@@ -26,8 +29,18 @@ namespace P3_Lab3.Models
             if (amount < 0)
                 throw new ArgumentException("Amount cannot be zero or negative!", nameof(amount));
 
-            _companyBudget += amount;
-            return _divisionAllowances += amount;
+            if (!AnnualFunds.ApproveAllowance(amount))
+            {
+                DeniedAllowances += amount;
+                CompanyDeniedAllowances += amount;
+            }
+            else
+            {
+                _companyBudget += amount;
+                _divisionAllowances += amount;
+            }
+
+            return _divisionAllowances;
         }
 
         public double PayExpense(double amount)
@@ -70,9 +83,27 @@ namespace P3_Lab3.Models
             get { return _companyExpenses; } 
         }
 
+        public double DeniedAllowances
+        {
+            get { return _deniedDivisionAllowances; }
+            set
+            {
+                _deniedDivisionAllowances = value;
+            }
+        }
+
+        public static double CompanyDeniedAllowances
+        {
+            get { return _companyDeniedAllowances; }
+            set
+            {
+                _companyDeniedAllowances = value;
+            }
+        }
+
         public override string ToString()
         {
-            return $"\n{Name} Division\nBudget:    {DivisionBudget,20:C}\nExpenses: {DivisionExpenses,20:C}";
+            return $"\n{Name} Division\nBudget:    {DivisionBudget,20:C}\nExpenses: {DivisionExpenses,20:C}\nDenied Allowances: {DeniedAllowances,20:C}";
         }
     }
 }
