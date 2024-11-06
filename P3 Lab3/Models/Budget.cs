@@ -23,6 +23,12 @@ namespace P3_Lab3.Models
             Name = divisionName;
         }
 
+        public Budget(string divisionName, double startingAllowance)
+        {
+            Name = divisionName;
+            AddAllowance(startingAllowance);
+        }
+
         // Setter for _divisionAllowances
         public double AddAllowance(double amount)
         {
