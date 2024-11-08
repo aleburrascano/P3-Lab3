@@ -40,7 +40,7 @@ namespace P3_Lab3.Models
 
         public void AddInterestToAllowance()
         {
-            if (DateTime.Now >= _maturityDate)
+            if (DateTime.Now > _maturityDate)
             {
                 base.AddAllowance(((1 + Interest) * base.DivisionBudget));
             }

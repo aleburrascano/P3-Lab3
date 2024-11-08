@@ -9,11 +9,11 @@ namespace P3_Lab3.Models
     internal class Budget
     {
         private string _divisionName;
-        private double _divisionAllowances;
-        private double _divisionExpenses;
+        protected double _divisionAllowances;
+        protected double _divisionExpenses;
 
-        private static double _companyBudget;
-        private static double _companyExpenses;
+        protected static double _companyBudget;
+        protected static double _companyExpenses;
 
         private double _deniedDivisionAllowances;
         private static double _companyDeniedAllowances;
@@ -49,7 +49,7 @@ namespace P3_Lab3.Models
             return _divisionAllowances;
         }
 
-        public double PayExpense(double amount)
+        public virtual double PayExpense(double amount)
         {
             if (amount < 0)
                 throw new ArgumentException("Amount cannot be zero or negative!", nameof(amount));
@@ -66,6 +66,7 @@ namespace P3_Lab3.Models
         public double DivisionBudget
         {
             get { return _divisionAllowances; }
+            protected set { _divisionAllowances = value; }
         }
 
         public double DivisionExpenses
