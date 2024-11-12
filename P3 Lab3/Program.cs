@@ -9,54 +9,59 @@ namespace P3_Lab3
         public static void Main(string[] args)
         {
             TestBudgetClass();
-            //TaskScheduler taskScheduler = new TaskScheduler();
+            TaskScheduler taskScheduler = new TaskScheduler();
 
-            //// Seed test data
-            //List<Task> tasks = Seed();
+            // Seed test data
+            List<Task> tasks = Seed();
 
-            //foreach (Task task in tasks)
-            //    taskScheduler.AddTask(task);
+            foreach (Task task in tasks)
+                taskScheduler.AddTask(task);
 
-            //// Print completed tasks
-            //Console.WriteLine("Completed Tasks:");
-            //PrintTasksInfo(taskScheduler.CompletedTasks);
+            // Print completed tasks
+            Console.WriteLine("Completed Tasks:");
+            PrintTasksInfo(taskScheduler.CompletedTasks);
 
-            //// Print Incompleted tasks
-            //Console.WriteLine("\nIncompleted Tasks:");
-            //PrintTasksInfo(taskScheduler.IncompletedTasks);
+            // Print Incompleted tasks
+            Console.WriteLine("\nIncompleted Tasks:");
+            PrintTasksInfo(taskScheduler.IncompletedTasks);
 
-            //// Print overdue tasks
-            //Console.WriteLine("\nOverdue Tasks:");
-            //PrintTasksInfo(taskScheduler.OverdueTasks);
+            // Print overdue tasks
+            Console.WriteLine("\nOverdue Tasks:");
+            PrintTasksInfo(taskScheduler.OverdueTasks);
 
-            //// Add a new task
-            //taskScheduler.AddTask(new Task("New Task", DateTime.Today.AddDays(7)));
+            // Add a new task
+            taskScheduler.AddTask(new Task("New Task", DateTime.Today.AddDays(7)));
 
-            //// Print Incompleted tasks again
-            //Console.WriteLine("\nIncompleted Tasks After Adding:");
-            //PrintTasksInfo(taskScheduler.IncompletedTasks);
+            // Print Incompleted tasks again
+            Console.WriteLine("\nIncompleted Tasks After Adding:");
+            PrintTasksInfo(taskScheduler.IncompletedTasks);
 
-            //// Search for a task
-            //Task? foundTask = taskScheduler.FindTask(new Random().Next(1, taskScheduler.Count));
-            //Console.WriteLine("\nFound Task:");
-            //Console.WriteLine(foundTask);
+            //Search for a task
+            Task? foundTask = taskScheduler.FindTask(8);
+            Console.WriteLine("\nFound Task:");
+            Console.WriteLine(foundTask);
 
-            //// Close a task
-            //taskScheduler.CloseTask(1); // Assume task ID 1
-            //Console.WriteLine("\nCompleted Tasks After Closing:");
-            //PrintTasksInfo(taskScheduler.CompletedTasks);
+            // Search for a second task
+            Task? foundTask2 = taskScheduler.FindTask(new Random().Next(1, taskScheduler.Count));
+            Console.WriteLine("\nFound Task:");
+            Console.WriteLine(foundTask2);
 
-            //// Remove a task
-            //taskScheduler.RemoveTask(1); // Assume task ID 1
-            //Console.WriteLine("\nCompleted Tasks After Removal:");
-            //PrintTasksInfo(taskScheduler.CompletedTasks);
+            // Close a task
+            taskScheduler.CloseTask(1); // Assume task ID 1
+            Console.WriteLine("\nCompleted Tasks After Closing:");
+            PrintTasksInfo(taskScheduler.CompletedTasks);
 
-            //// Print the count of tasks
-            //Console.WriteLine($"\nTask Count: {taskScheduler.Count}");
+            // Remove a task
+            taskScheduler.RemoveTask(1); // Assume task ID 1
+            Console.WriteLine("\nCompleted Tasks After Removal:");
+            PrintTasksInfo(taskScheduler.CompletedTasks);
 
-            //// Clear the scheduler
-            //taskScheduler.ClearScheduler();
-            //Console.WriteLine($"\nTask Count After Clearing: {taskScheduler.Count}");
+            // Print the count of tasks
+            Console.WriteLine($"\nTask Count: {taskScheduler.Count}");
+
+            // Clear the scheduler
+            taskScheduler.ClearScheduler();
+            Console.WriteLine($"\nTask Count After Clearing: {taskScheduler.Count}");
         }
 
         // Generate test data
@@ -96,9 +101,9 @@ namespace P3_Lab3
             //Create an array of Budget objects using object initialization syntax
             Budget[] companyDivisions = new Budget[]
             {
-        new Budget("IT"),
-        new Budget("Management"),
-        new Budget("HR"),
+                new Budget("IT"),
+                new Budget("Management"),
+                new Budget("HR"),
             };
 
             //Add allowances: 6 values
