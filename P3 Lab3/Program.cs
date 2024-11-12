@@ -37,17 +37,17 @@ namespace P3_Lab3
             //PrintTasksInfo(taskScheduler.IncompletedTasks);
 
             //// Search for a task
-            //Task? foundTask = taskScheduler.FindTask(1); // Assume task ID 1
+            //Task? foundTask = taskScheduler.FindTask(new Random().Next(1, taskScheduler.Count));
             //Console.WriteLine("\nFound Task:");
             //Console.WriteLine(foundTask);
 
             //// Close a task
-            //taskScheduler.CloseTask(1);
+            //taskScheduler.CloseTask(1); // Assume task ID 1
             //Console.WriteLine("\nCompleted Tasks After Closing:");
             //PrintTasksInfo(taskScheduler.CompletedTasks);
 
             //// Remove a task
-            //taskScheduler.RemoveTask(1);
+            //taskScheduler.RemoveTask(1); // Assume task ID 1
             //Console.WriteLine("\nCompleted Tasks After Removal:");
             //PrintTasksInfo(taskScheduler.CompletedTasks);
 
@@ -161,9 +161,8 @@ namespace P3_Lab3
             Console.WriteLine("\n>>> Printing Company's Information <<<");
             Console.WriteLine($"{"Company Total Allowances:",-35} {Budget.CompanyBudget,20:c}");
             Console.WriteLine($"{"Company Total Expenses:",-35} {Budget.CompanyExpenses,20:c}");
-            Console.WriteLine($"Company Total Denied Expenses: {Budget.CompanyDeniedAllowances,20:c}");
-
-            Console.WriteLine($"Available Annual Funds: {AnnualFunds.AvailableFunds,20:c}");
+            Console.WriteLine($"{"Company Total Denied Allowances:",-35} {Budget.CompanyDeniedAllowances,20:c}");
+            Console.WriteLine($"{"Available Annual Funds:",-35} {AnnualFunds.AvailableFunds,20:c}");
             //Using place holders
             //Console.WriteLine(string.Format("{0,-35}{1,-20}", "Company Total Allowances:", Budget.CompanyBudget.ToString("c")));
             //Console.WriteLine(string.Format("{0,-35}{1,-20}", "Company Total Expenses:", Budget.CompanyExpenses.ToString("c")));

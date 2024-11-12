@@ -15,7 +15,6 @@ namespace P3_Lab3
         private bool _isCompleted;
 
         // No default constructor because for a task to exist, it needs to have a summary and that is something a user must fill in on their own, it's not our job.
-
         // Constructor that initializes Task summary with today's date as default due date
         public Task(string summary)
         {

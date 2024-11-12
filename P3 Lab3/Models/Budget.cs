@@ -86,31 +86,25 @@ namespace P3_Lab3.Models
         }
 
         public static double CompanyExpenses
-        { 
-            get { return _companyExpenses; } 
+        {
+            get { return _companyExpenses; }
         }
 
         public double DeniedAllowances
         {
             get { return _deniedDivisionAllowances; }
-            set
-            {
-                _deniedDivisionAllowances = value;
-            }
+            set { _deniedDivisionAllowances = value; }
         }
 
         public static double CompanyDeniedAllowances
         {
             get { return _companyDeniedAllowances; }
-            set
-            {
-                _companyDeniedAllowances = value;
-            }
+            set { _companyDeniedAllowances = value; }
         }
 
         public override string ToString()
         {
-            return $"\n{Name} Division\nBudget:    {DivisionBudget,20:C}\nExpenses: {DivisionExpenses,20:C}\nDenied Allowances: {DeniedAllowances,20:C}";
+            return $"\n{Name} Division\n{"Budget:",-35} {DivisionBudget,20:C}\n{"Expenses:",-35} {DivisionExpenses,20:C}\n{"Denied Allowances:",-35} {DeniedAllowances,20:C}";
         }
     }
 }
